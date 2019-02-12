@@ -1,5 +1,7 @@
 # JavaProject
 |||||||INFO||||||||
 Projekt Aplikacji czatu(Wszyscy do wszystkich)
-|||||||DEMO||||||||
-[img]https://imgur.com/a/VWtqfkQ[/img]
+<center><b>|||||||DEMO||||||||</b></center>
+<p align="center">
+	<img src="https://imgur.com/a/VWtqfkQ" alt="Server Screenshot">
+</p>
