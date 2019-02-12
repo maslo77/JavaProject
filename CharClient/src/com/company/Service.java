@@ -1,5 +1,7 @@
 package com.company;
 
+import com.sun.security.ntlm.Server;
+
 import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,19 +20,20 @@ public class Service{
         new ClientGUI();
 
         try {
+            ClientGUI.chatting("Trwa nawiazywanie polaczenia z serwerem...");
             socket = new Socket("localhost",1234);
+            ClientGUI.chatting("Polaczono! Witamy w pokoju czatowym!");
             outcoming = new PrintWriter(socket.getOutputStream(),true);
-            incoming = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            incoming = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
             while(true) {
                 String readed = incoming.readLine();
                 ClientGUI.chatting(readed);
             }
         } catch (IOException e) {
-
+            ClientGUI.noConnection();
             e.printStackTrace();
-
+            System.exit(1);
         }
-
 
     }
     public static void main(String[] args) throws IOException {

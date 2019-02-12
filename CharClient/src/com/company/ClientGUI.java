@@ -48,7 +48,7 @@ public class ClientGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String mess = sendField.getText();
                 if (mess.equals("")) {
-
+                    JOptionPane.showMessageDialog(null,"Pusta Wiadomosc!");
                 } else {
                     Service.outcoming.println(Service.nick + " pisze : " + mess);
                     sendField.setText("");
@@ -60,4 +60,5 @@ public class ClientGUI extends JFrame {
     {
         textarea.append(message+"\n");
     }
+    public static void noConnection(){JOptionPane.showMessageDialog(null,"BRAK POŁĄCZENIA Z SERWEREM");}
 }

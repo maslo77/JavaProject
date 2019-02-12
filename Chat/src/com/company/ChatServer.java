@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.DateFormat;
@@ -29,7 +30,7 @@ public class ChatServer {
 
 
             try {
-                ServerSocket1 = new ServerSocket(25568);
+                ServerSocket1 = new ServerSocket(1234); //port 25568
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -46,7 +47,7 @@ public class ChatServer {
                                 c.ClientT.start();
                                 clients.add(c);
                                 String data = DateForm.format(date);
-                                konsola.ServerLogs(data+"-Dolaczyl uzytkownik o adresie: "+socket.getInetAddress().getHostAddress());
+                                konsola.ServerLogs(data+"-Dolaczyl uzytkownik o adresie: "+ InetAddress.getLocalHost());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
