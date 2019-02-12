@@ -18,7 +18,7 @@ public class Service{
         new ClientGUI();
 
         try {
-            socket = new Socket("192.168.0.157",25568);
+            socket = new Socket("localhost",1234);
             outcoming = new PrintWriter(socket.getOutputStream(),true);
             incoming = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while(true) {

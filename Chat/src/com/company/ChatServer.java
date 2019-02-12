@@ -8,7 +8,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ChatServer {
     //Polaczenie
@@ -20,7 +23,11 @@ public class ChatServer {
     BufferedReader incoming;
     static ArrayList<Client> clients = new ArrayList<>();
     public static  Console konsola;
+    DateFormat DateForm = new SimpleDateFormat("MM/dd HH:mm:ss");
+    Date date = new Date();
         public ChatServer(){
+
+
             try {
                 ServerSocket1 = new ServerSocket(25568);
                 new Thread(new Runnable() {
@@ -38,7 +45,8 @@ public class ChatServer {
                                 Client c = new Client(outcoming,incoming);
                                 c.ClientT.start();
                                 clients.add(c);
-                                konsola.ServerLogs("Dolaczyl uzytkownik o adresie: "+socket.getLocalAddress());
+                                String data = DateForm.format(date);
+                                konsola.ServerLogs(data+"-Dolaczyl uzytkownik o adresie: "+socket.getInetAddress().getHostAddress());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -65,9 +73,10 @@ public class ChatServer {
          }
      }
     public static void main(String[] args)
-    {
+    {  DateFormat DateForm = new SimpleDateFormat("MM/dd HH:mm:ss");
+
+        Date data = new Date();
         new ChatServer();
-        konsola.ServerLogs("Serwer Zostal Uruchomiony!");
-        konsola.ServerLogs("Porozmawiaj z nami!");
+        konsola.ServerLogs(DateForm.format(data)+": Serwer Zostal Uruchomiony!");
     }
 }
