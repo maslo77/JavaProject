@@ -18,21 +18,25 @@ public class Service{
 
     public Service() throws IOException {
         new ClientGUI();
+        while(true) {
+            try {
+                ClientGUI.chatting("Trwa nawiazywanie polaczenia z serwerem...");
+                socket = new Socket("localhost", 1234);
+                ClientGUI.chatting("Połączono! Witamy w pokoju czatowym!");
+                outcoming = new PrintWriter(socket.getOutputStream(), true);
+                incoming = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+                while (true) {
+                    String readed = incoming.readLine();
+                    ClientGUI.chatting(readed);
+                }
+            } catch (IOException e) {
+                if (ClientGUI.noConnection() == JOptionPane.NO_OPTION || ClientGUI.noConnection() == JOptionPane.CANCEL_OPTION ) {
+                    System.exit(0);
+                    break;
+                }
+                e.printStackTrace();
 
-        try {
-            ClientGUI.chatting("Trwa nawiazywanie polaczenia z serwerem...");
-            socket = new Socket("localhost",1234);
-            ClientGUI.chatting("Polaczono! Witamy w pokoju czatowym!");
-            outcoming = new PrintWriter(socket.getOutputStream(),true);
-            incoming = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
-            while(true) {
-                String readed = incoming.readLine();
-                ClientGUI.chatting(readed);
             }
-        } catch (IOException e) {
-            ClientGUI.noConnection();
-            e.printStackTrace();
-            System.exit(1);
         }
 
     }

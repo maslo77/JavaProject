@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ClientGUI extends JFrame {
 
@@ -50,7 +53,10 @@ public class ClientGUI extends JFrame {
                 if (mess.equals("")) {
                     JOptionPane.showMessageDialog(null,"Pusta Wiadomosc!");
                 } else {
-                    Service.outcoming.println(Service.nick + " pisze : " + mess);
+                    DateFormat DateForm = new SimpleDateFormat("HH:mm:ss");
+
+                    Date data = new Date();
+                    Service.outcoming.println(DateForm.format(data)+" "+Service.nick + ": " + mess);
                     sendField.setText("");
                 }
             }
@@ -60,5 +66,6 @@ public class ClientGUI extends JFrame {
     {
         textarea.append(message+"\n");
     }
-    public static void noConnection(){JOptionPane.showMessageDialog(null,"BRAK POŁĄCZENIA Z SERWEREM");}
+    public static int noConnection(){return JOptionPane.showConfirmDialog(null,"Brak połączenia! Połączyć ponownie?");
+}
 }

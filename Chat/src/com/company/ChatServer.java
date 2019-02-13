@@ -47,7 +47,7 @@ public class ChatServer {
                                 c.ClientT.start();
                                 clients.add(c);
                                 String data = DateForm.format(date);
-                                konsola.ServerLogs(data+"-Dolaczyl uzytkownik o adresie: "+ InetAddress.getLocalHost());
+                                konsola.ServerLogs(data+": Dolaczyl uzytkownik o adresie: "+ InetAddress.getLocalHost());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
